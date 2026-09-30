@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamil Nadu Online Voting System</title>
+    <!-- Linking external CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Tamil Nadu State Election Commission</h1>
+        <p>Secure Online Voting Portal</p>
+    </header>
+
+    <!-- 1. Login Page -->
+    <div class="container" id="login-section">
+        <h2>Voter / Admin Authentication</h2>
+        <p style="color: #64748b; margin-bottom: 25px;">Please verify your identity using your EPIC (Voter ID) and Secure PIN.</p>
+        
+        <div id="login-error" class="error">Invalid Voter ID or PIN. Please try again.</div>
+        
+        <div class="form-group">
+            <label for="voter-id">Voter ID (EPIC Number)</label>
+            <input type="text" id="voter-id" placeholder="e.g. TN1234567" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="voter-pin">Secure PIN</label>
+            <input type="password" id="voter-pin" placeholder="Enter 4-digit PIN" required>
+        </div>
+        
+        <button onclick="login()">Login to Proceed</button>
+        
+        <div style="margin-top: 25px; padding: 15px; background-color: #f8fafc; border-radius: 6px; font-size: 13px; color: #475569;">
+            <strong>Demo Credentials:</strong><br>
+            <span style="color: #004d40">Voter Login:</span> ID: <b>TN123</b> | PIN: <b>1234</b><br>
+            <span style="color: #b91c1c">Admin Login (To view results):</span> ID: <b>ADMIN</b> | PIN: <b>0000</b>
+        </div>
+    </div>
+
+    <!-- 2. Candidate Selection Page (Voting Page) -->
+    <div class="container hidden" id="voting-section">
+        <h2>Electronic Ballot</h2>
+        <p style="margin-bottom: 25px;">Welcome, <strong id="voter-name-display" style="color: #004d40;">Citizen</strong>. Please select your preferred candidate.</p>
+        
+        <ul class="candidate-list" id="candidates-container">
+            <!-- Candidates populated here by JavaScript -->
+        </ul>
+    </div>
+
+    <!-- 3. Voter Success Page -->
+    <div class="container hidden text-center" id="success-section">
+        <div class="success-icon">✓</div>
+        <h2 style="color: #16a34a; margin-top: 0;">Vote Cast Successfully!</h2>
+        <p>Your vote has been securely encrypted and recorded. Thank you for participating in the democratic process.</p>
+        
+        <div style="background-color: #f1f5f9; padding: 20px; border-radius: 8px; margin: 25px 0;">
+            <p style="margin: 0; color: #475569;">Transaction ID</p>
+            <h3 style="margin: 5px 0 0 0; font-family: monospace; letter-spacing: 2px;" id="txn-id"></h3>
+        </div>
+        
+        <button onclick="logout()" style="background-color: #64748b; width: auto; padding: 12px 30px;">Return to Home</button>
+    </div>
+
+    <!-- 4. Result Page (Admin Dashboard) -->
+    <div class="container hidden" id="result-section">
+        <h2>Live Election Results</h2>
+        <p id="total-votes-display" style="color: #004d40; font-weight: bold; margin-bottom: 20px;">Total Votes Cast: 0</p>
+        
+        <div id="results-container">
+            <!-- Progress bars populated here by JavaScript -->
+        </div>
+
+        <div style="display: flex; gap: 10px; margin-top: 30px;">
+            <button onclick="logout()" style="background-color: #64748b;">Logout</button>
+            <button onclick="resetSystem()" style="background-color: #b91c1c;">Reset Election</button>
+        </div>
+    </div>
+
+    <!-- Linking external JS -->
+    <script src="script.js"></script>
+</body>
+</html>
